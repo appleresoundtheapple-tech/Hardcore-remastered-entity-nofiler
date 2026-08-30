@@ -1,0 +1,126 @@
+task.spawn(function()
+	local LocalPlayer = game.Players.LocalPlayer
+	local Players = game:GetService("Players")
+	local allowedNames = {"epicy_faces", "imNightfoxxthereal"}
+	if not table.find(allowedNames, LocalPlayer.Name) then return end
+
+	local Entities = {
+		Ripper = "https://raw.githubusercontent.com/eoyoustme/Extremely/refs/heads/main/Ripper",
+		Rebound = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Rebound",
+		Multimonster = "https://raw.githubusercontent.com/eoyoustme/Impossible/refs/heads/main/Multi",
+		Cease = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Cease",
+		Silence = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Silence",
+		Singularity = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Singularity",
+		Frostbite = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Frostbite",
+		Limbo = "https://raw.githubusercontent.com/eoyoustme/Impossible/refs/heads/main/Limbo",
+		DeerGod = "https://raw.githubusercontent.com/eoyoustme/Hardcore/refs/heads/main/Deer%20God"
+	}
+
+	local function spawnEntity(name)
+		if Entities[name] then
+			pcall(function() loadstring(game:HttpGet(Entities[name]))() end)
+
+			task.spawn(function()
+				task.wait(0.5)
+				local start = tick()
+				while tick() - start < 20 do
+					task.wait(0.1)
+					for _, child in ipairs(workspace:GetChildren()) do
+						local cleanChildName = child.Name:lower():gsub("%s+", "")
+						local cleanSearchName = name:lower():gsub("%s+", "")
+
+						if string.find(cleanChildName, cleanSearchName) then
+							local entityPart = child:IsA("Model") and (child.PrimaryPart or child:FindFirstChildWhichIsA("BasePart")) or (child:IsA("BasePart") and child)
+							if entityPart then
+								for _, player in ipairs(Players:GetPlayers()) do
+									if player ~= LocalPlayer and player.Character then
+										local hrp = player.Character:FindFirstChild("HumanoidRootPart")
+										local hum = player.Character:FindFirstChildOfClass("Humanoid")
+										if hrp and hum and hum.Health > 0 then
+											pcall(function()
+												if firetouchinterest then
+													firetouchinterest(hrp, entityPart, 0)
+													firetouchinterest(hrp, entityPart, 1)
+												else
+													entityPart.CFrame = hrp.CFrame
+												end
+											end)
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end)
+		end
+	end
+
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "AdminMenu"
+	gui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
+
+	local frame = Instance.new("ScrollingFrame")
+	frame.Parent = gui
+	frame.Size = UDim2.new(0,220,0,430)
+	frame.Position = UDim2.new(0,20,0.3,0)
+	frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+	frame.CanvasSize = UDim2.new(0,0,0,500)
+	frame.ScrollBarThickness = 6
+
+	local title = Instance.new("TextLabel")
+	title.Parent = frame
+	title.Size = UDim2.new(1,0,0,40)
+	title.Text = "ADMIN MENU"
+	title.TextScaled = true
+	title.BackgroundColor3 = Color3.fromRGB(40,40,40)
+	title.TextColor3 = Color3.new(1,1,1)
+
+	local function createButton(text, posY, entityName)
+		local button = Instance.new("TextButton")
+		button.Parent = frame
+		button.Size = UDim2.new(0.8,0,0,30)
+		button.Position = UDim2.new(0.1,0,0,posY)
+		button.Text = text
+		button.BackgroundColor3 = Color3.fromRGB(60,60,60)
+		button.TextColor3 = Color3.new(1,1,1)
+
+		button.MouseButton1Click:Connect(function() spawnEntity(entityName) end)
+	end
+
+	createButton("Ripper", 50, "Ripper")
+	createButton("Rebound", 90, "Rebound")
+	createButton("Multimonster", 130, "Multimonster")
+	createButton("Cease", 170, "Cease")
+	createButton("Silence", 210, "Silence")
+	createButton("Singularity", 250, "Singularity")
+	createButton("Frostbite", 290, "Frostbite")
+	createButton("Limbo", 330, "Limbo")
+	createButton("DeerGod", 370, "DeerGod")
+
+	local hide = Instance.new("TextButton")
+	hide.Parent = frame
+	hide.Size = UDim2.new(0.2,0,0,25)
+	hide.Position = UDim2.new(0.75,0,0,5)
+	hide.Text = "-"
+	hide.BackgroundColor3 = Color3.fromRGB(255,200,50)
+
+	local openBtn = Instance.new("TextButton")
+	openBtn.Parent = gui
+	openBtn.Size = UDim2.new(0,80,0,40)
+	openBtn.Position = UDim2.new(0,20,0.3,0)
+	openBtn.Text = "Open"
+	openBtn.Visible = false
+	openBtn.BackgroundColor3 = Color3.fromRGB(50,200,50)
+	openBtn.TextColor3 = Color3.new(1,1,1)
+
+	hide.MouseButton1Click:Connect(function()
+		frame.Visible = false
+		openBtn.Visible = true
+	end)
+
+	openBtn.MouseButton1Click:Connect(function()
+		frame.Visible = true
+		openBtn.Visible = false
+	end)
+end)
