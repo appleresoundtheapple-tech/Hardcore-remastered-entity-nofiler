@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "GoryHub for Doors by Gorynych",
-    LoadingTitle = "Loading GoryHub...",
+    Name = "Rebound hub for Doors by Rebound (lol)",
+    LoadingTitle = "Loading Rebound hub...",
     LoadingSubtitle = "credit to Gorynych (@Robloxianq6w9k8t4b)",
     ConfigurationSaving = {
         Enabled = true,
