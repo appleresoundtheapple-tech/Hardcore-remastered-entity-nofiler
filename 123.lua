@@ -40,7 +40,7 @@ local monsterNotifyConn = nil
 
 local monsterNames = {"RushMoving", "AmbushMoving", "Eyes", "CeaseMoving", "Specimen 8", "A60", "Frostbite", "Rebound", "RipperMoving", "Silence", "Shocker"}
 
-local itemNames = {"Crucifix", "Flashlight", "Lighter", "Lockpick", "SkeletonKey", "Battery", "Vitamins", "Smoothie", "Candle", "Bandage"}
+local itemNames = {"Crucifix", "Flashlight", "Lighter", "Lockpick", "SkeletonKey", "Battery", "Vitamins", "Smoothie", "Candle", "Bandage", "Books"}
 
 local defaultFOV = 70
 local defaultSpeed = 15
