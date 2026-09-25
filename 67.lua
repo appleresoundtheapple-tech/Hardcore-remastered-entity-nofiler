@@ -43,7 +43,7 @@ local defaultFOV = 70
 local defaultSpeed = 15
 local currentFOV = defaultFOV
 local currentSpeed = defaultSpeed
-local seekChaseSpeed = 23
+local seekChaseSpeed = 30
 
 local trackedBooks = {}
 local trackedFigure50 = nil
