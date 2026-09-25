@@ -573,8 +573,8 @@ MainTab:CreateSlider({
 })
 
 MainTab:CreateSlider({
-    Name = "Speed (16-21)",
-    Range = {16, 21},
+    Name = "Speed (16-29)",
+    Range = {16, 29},
     Increment = 1,
     Suffix = "",
     CurrentValue = defaultSpeed,
