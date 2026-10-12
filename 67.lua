@@ -35,7 +35,7 @@ local fovConn = nil
 local speedConn = nil
 local monsterNotifyConn = nil
 
-local monsterNames = {"Cease", "A200", "Eyes", "DeerGod", "Multimonster", "Frostbite", "ReboundMoving", "Ripper", "Silence", "Shocker", "A60", "RushMoving"}
+local monsterNames = {"Cease", "A200", "Eyes", "DeerGod", "Multimonster", "Frostbite", "ReboundMoving", "Ripper", "Silence", "Shocker", "A60", "RushMoving", "Rupture"}
 
 local itemNames = {"Crucifix", "Flashlight", "Lighter", "Lockpick", "SkeletonKey", "Battery", "Vitamins", "Smoothie", "Candle", "Bandage"}
 
